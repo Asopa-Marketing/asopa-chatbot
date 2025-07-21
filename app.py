@@ -1,6 +1,5 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
-from flask import Flask
 
 app = Flask(__name__)
 user_data={}
@@ -68,7 +67,7 @@ def reply():
         msg.body("📞 *Contact Us:*\n*Asopa Marketing*\n*Call:* +91-9284122832,+91-9309827721\n*Email:* hello@asopamarketing.com\n *Website:* https://www.asopamarketing.com\n ")
     
     else:
-        msg.body("❓ I didn’t understand that. Reply with:\n1️  I want Marketing Services\n2️  Book Free Call\n3️ All Social Media links\n4 Contact \n\n")
+        msg.body("❓ I didn’t understand that. Reply with:\n1 I want Marketing Services\n2 Book Free Call\n3 All Social Media links\n4 Contact \n\n")
 
     return str(resp)
 
