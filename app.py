@@ -3,6 +3,11 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 user_data={}
+
+@app.route("/", methods=["GET"])
+def home():
+    return"whatsapp bot is running successfully!"
+
 @app.route("/", methods=["POST"])
 def reply():
     sender=request.values.get("from")
@@ -46,15 +51,15 @@ def reply():
          user_data[sender]["step"]="get_name"
          msg.body("Please enter your *Name* to book your free consultation call.")
     elif step =="get_name":
-         user_data[sender]["name"]="incoming_msg"
+         user_data[sender]["name"]= incoming_msg
          user_data[sender]["step"]="get_phone"
          msg.body("*Great!* now enter your *Phone Number*.")
     elif  step =="get_phone":
-         user_data[sender]["phone"]="incoming_msg"
+         user_data[sender]["phone"]= incoming_msg
          user_data[sender]["step"]="get_email"
          msg.body("Almost done!Please enter your *Email ID*.")
     elif step =="get_email":
-         user_data[sender]["email"]="incoming_msg"
+         user_data[sender]["email"]= incoming_msg
          user_data[sender]["step"]="done_call"
          msg.body("*Congratulations!* Your Free consultation call is booked.\n\n" f"Name:{user_data[sender]['name']}\n" f"Phone Number:{user_data[sender]['phone']}\n" f"Email:{user_data[sender]['email']}\n" "Our expert will contact you shortly!")
     
